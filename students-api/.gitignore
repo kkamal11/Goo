@@ -1,0 +1,7 @@
+.exe
+.env
+
+go.work
+go.work.sum
+
+storage
