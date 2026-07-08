@@ -1,13 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+)
 
 type Course struct{
-	Name string
-	Price int
-	Platform string
-	Password string
-	Tags []string
+	Name string `json:"coursename"`
+	Price int `json:"price"`
+	Platform string `json:"platform"`
+	Password string `json:"-"` //means dont send in json
+	Tags []string `json:"tags,omitempty"` //if tags is empty then dont send in json
 }
 
 func main() {
@@ -25,5 +28,10 @@ func main() {
 
 func EncodeJson(courses []Course) string {
 	// code to encode the courses slice into JSON string
-	return ""
+	finalJson, err := json.Marshal(courses)
+	if err != nil {
+		panic(err)
+	}
+	
+	return string(finalJson)
 }
