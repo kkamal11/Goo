@@ -24,6 +24,9 @@ func greeter(){
 
 func serveHome(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("<h1>Hello there</h1>"))
-	fmt.Fprintf(w, "Welcome to the Home Page!")
-	fmt.Println("Endpoint Hit: homePage")
+	databyte, err := fmt.Fprintf(w, "Welcome to the Home Page!")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Endpoint Hit: homePage ", databyte, " bytes written")
 }
